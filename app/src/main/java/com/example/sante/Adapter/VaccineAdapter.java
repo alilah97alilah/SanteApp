@@ -13,15 +13,20 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sante.Model.VaccineModel;
 import com.example.sante.R;
+
+import java.util.List;
 
 public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapterViewHolder>{
 
 
     Context context;
+    private List<VaccineModel> vaccineModelList;
 
-    public VaccineAdapter(Context context) {
+    public VaccineAdapter(Context context, List<VaccineModel> vaccineModelList) {
         this.context = context;
+        this.vaccineModelList = vaccineModelList;
     }
 
     @Override
@@ -33,10 +38,16 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapterViewHolde
     @Override
     public void onBindViewHolder(@NonNull VaccineAdapterViewHolder holder, int position) {
 
+
+        final VaccineModel vaccineModel = vaccineModelList.get(position);
+        holder.textViewTitle.setText(vaccineModel.getTitle());
+        holder.textViewDetail.setText("Request a "+vaccineModel.getTitle() +" Vaccine");
+        holder.textViewPrice.setText("Rp "+vaccineModel.getPrice()+"-");
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,OrderVaccine.class);
+                intent.putExtra("VaccineID", vaccineModel.getVaccineID());
                 context.startActivity(intent);
             }
         });
@@ -44,21 +55,20 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapterViewHolde
 
     @Override
     public int getItemCount() {
-        return 10;
+        return vaccineModelList.size();
     }
 }
 
 class VaccineAdapterViewHolder extends RecyclerView.ViewHolder{
 
-    TextView textViewFarmAddress,textViewPricePerAcre,textViewTotalAcres,textViewAdType;
-    ImageView imageViewFarmImage;
-    ImageButton imageButtonDelete;
+    TextView textViewTitle,textViewDetail,textViewPrice;
+
     CardView cardView;
     public VaccineAdapterViewHolder(@NonNull View itemView) {
         super(itemView);
-        textViewFarmAddress=itemView.findViewById(R.id.txtTitle);
-        textViewPricePerAcre=itemView.findViewById(R.id.txtdetail);
-        textViewTotalAcres=itemView.findViewById(R.id.txtPrice);
+        textViewTitle=itemView.findViewById(R.id.txtTitle);
+        textViewDetail=itemView.findViewById(R.id.txtdetail);
+        textViewPrice=itemView.findViewById(R.id.txtPrice);
 
         cardView=itemView.findViewById(R.id.cvVaccine);
     }

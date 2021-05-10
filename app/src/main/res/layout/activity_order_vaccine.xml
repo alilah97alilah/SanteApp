@@ -78,7 +78,7 @@
                     <TextView
                         android:id="@+id/txtTitle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="33dp"
                         android:text="Yellow Fever"
                         android:textSize="17dp"
                         android:textStyle="bold"></TextView>
@@ -200,7 +200,6 @@
                         android:background="@color/white"
                         android:layout_marginTop="10dp"
                         android:hint="Enter Blood Group"
-                        android:inputType="textPassword"
                         android:padding="10dp"></EditText>
 
                 </LinearLayout>
@@ -224,7 +223,6 @@
                         android:background="@color/white"
                         android:layout_marginTop="10dp"
                         android:hint="Enter Age"
-                        android:inputType="textPassword"
                         android:padding="10dp"></EditText>
 
                 </LinearLayout>
@@ -246,19 +244,19 @@
                         android:textSize="17dp"></TextView>
 
                     <EditText
-                        android:id="@+id/spUnionCouncil"
+                        android:id="@+id/etAddress"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:background="@color/white"
                         android:layout_marginTop="10dp"
                         android:hint="Enter Address"
-                        android:inputType="textPassword"
+                        android:inputType="textPostalAddress"
                         android:padding="10dp"></EditText>
 
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btnPost"
+                    android:id="@+id/btnOrder"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="20dp"

@@ -12,15 +12,21 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sante.Model.OrderModel;
+import com.example.sante.Model.VaccineModel;
 import com.example.sante.R;
+
+import java.util.List;
 
 public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrderAdapterViewHolder>{
 
 
     Context context;
+    private List<OrderModel> orderModelList;
 
-    public MyOrdersAdapter(Context context) {
+    public MyOrdersAdapter(Context context, List<OrderModel> orderModelList) {
         this.context = context;
+        this.orderModelList = orderModelList;
     }
 
     @Override
@@ -31,27 +37,29 @@ public class MyOrdersAdapter extends RecyclerView.Adapter<MyOrderAdapterViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyOrderAdapterViewHolder holder, int position) {
-
+        final OrderModel orderModel = orderModelList.get(position);
+        holder.textViewTitle.setText(orderModel.getTitle());
+        holder.textViewDetail.setText("Ordered a "+orderModel.getTitle() +" Vaccine");
+        holder.textViewPrice.setText("Rp "+orderModel.getPrice()+"-");
+        holder.textViewDate.setText("Order Date: "+orderModel.getDate());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return orderModelList.size();
     }
 }
 
 class MyOrderAdapterViewHolder extends RecyclerView.ViewHolder{
 
-    TextView textViewFarmAddress,textViewPricePerAcre,textViewTotalAcres,textViewAdType,textViewPostedDate;
-    ImageView imageViewFarmImage;
-    ImageButton imageButtonDelete;
-    CardView cardView;
+    TextView textViewTitle,textViewDetail,textViewPrice,textViewDate;
+
     public MyOrderAdapterViewHolder(@NonNull View itemView) {
         super(itemView);
-        textViewFarmAddress=itemView.findViewById(R.id.txtTitle);
-        textViewPricePerAcre=itemView.findViewById(R.id.txtdetail);
-        textViewTotalAcres=itemView.findViewById(R.id.txtPrice);
+        textViewTitle=itemView.findViewById(R.id.txtTitle);
+        textViewDetail=itemView.findViewById(R.id.txtdetail);
+        textViewPrice=itemView.findViewById(R.id.txtPrice);
+        textViewDate=itemView.findViewById(R.id.txtOrderDate);
 
-        cardView=itemView.findViewById(R.id.cvVaccine);
     }
 }
